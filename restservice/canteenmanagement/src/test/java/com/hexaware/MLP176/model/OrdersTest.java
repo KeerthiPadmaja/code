@@ -1,26 +1,42 @@
+
 package com.hexaware.MLP176.model;
-//import static org.junit.Assert.assertEquals;
-//import com.hexaware.MLP175.persistence.MenuDAO;
-//import com.hexaware.MLP175.factory.MenuFactory;
-//import com.hexaware.MLP176.persistence.OrderDAO;
-//import com.hexaware.MLP176.factory.OrderFactory;
-import static org.junit.Assert.assertNotNull;
+
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
-import java.util.Date;
-import java.text.SimpleDateFormat;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
 import java.text.ParseException;
-import org.junit.Test;
+
+//import com.hexaware.MLP176.model.Orders;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
+// import com.hexaware.MLP176.factory.CustomerFactory;
+// import com.hexaware.MLP176.factory.MenuFactory;
+import com.hexaware.MLP176.factory.OrderFactory;
+// import com.hexaware.MLP176.factory.VendorFactory;
+// import com.hexaware.MLP176.factory.WalletFactory;
+import com.hexaware.MLP176.persistence.OrderDAO;
+// import com.hexaware.MLP176.factory.CustomerFactory;
+// import com.hexaware.MLP176.factory.MenuFactory;
+// import com.hexaware.MLP176.factory.OrderFactory;
+// import com.hexaware.MLP176.factory.VendorFactory;
+// import com.hexaware.MLP176.factory.WalletFactory;
+
 import org.junit.Before;
 //import org.junit.runner.RunWith;
+import org.junit.Test;
 
-//import mockit.Expectations;
-//import mockit.MockUp;
-//import mockit.Mocked;
-//import mockit.Mock;
+import mockit.Expectations;
+import mockit.Mock;
 //import mockit.integration.junit4.JMockit;
-//import java.util.ArrayList;
+import mockit.MockUp;
+import mockit.Mocked;
+
+// import java.util.ArrayList;
     /**
    * test for orders.
    */
@@ -49,7 +65,7 @@ public class OrdersTest {
     assertFalse(order1.equals(order3));
     Orders c = null;
     assertFalse(order1.equals(o));
-    Orders v = new Orders();
+    Vendor v = new Vendor();
     assertFalse(order1.equals(v));
     assertFalse(order1.equals(c));
     assertEquals(order1.hashCode(), order2.hashCode());
@@ -75,8 +91,8 @@ public class OrdersTest {
    */
   @Test
    public final void testOrders() throws ParseException {
-    Orders o = new Orders();
-    assertNotNull(o);
+    Orders m = new Orders();
+    assertNotNull(m);
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     String dt = new String("2020-03-18");
     Date odt = sdf.parse(dt);
@@ -92,27 +108,93 @@ public class OrdersTest {
     assertEquals(4, order.getOrderQuantity());
     assertEquals(WalletType.PAYTM, order.getWalletType());
 
-    o.setOrderId(1);
-    o.setCustomerId(101);
-    o.setVendorId(4);
-    o.setMenuId(1);
-    o.setOrderStatus(OrderStatus.ACCEPTED);
-    o.setOrderComments("SWEET");
-    o.setOrderTotalamount(20.00000);
-    o.setOrderDate(odt);
-    o.setOrderQuantity(4);
-    o.setWalletType(WalletType.PAYTM);
+    m.setOrderId(1);
+    m.setCustomerId(101);
+    m.setVendorId(4);
+    m.setMenuId(1);
+    m.setOrderStatus(OrderStatus.ACCEPTED);
+    m.setOrderComments("SWEET");
+    m.setOrderTotalamount(20.00000);
+    m.setOrderDate(odt);
+    m.setOrderQuantity(4);
+    m.setWalletType(WalletType.PAYTM);
 
-    assertEquals(1, o.getOrderId());
-    assertEquals(101, o.getCustomerId());
-    assertEquals(4, o.getVendorId());
-    assertEquals(1, o.getMenuId());
-    assertEquals(OrderStatus.ACCEPTED, o.getOrderStatus());
-    assertEquals("SWEET", o.getOrderComments());
-    assertEquals(20.00000, o.getOrderTotalamount(), 0);
-    assertEquals(odt, o.getOrderDate());
-    assertEquals(4, o.getOrderQuantity());
-    assertEquals(WalletType.PAYTM, o.getWalletType());
+    assertEquals(1, m.getOrderId());
+    assertEquals(101, m.getCustomerId());
+    assertEquals(4, m.getVendorId());
+    assertEquals(1, m.getMenuId());
+    assertEquals(OrderStatus.ACCEPTED, m.getOrderStatus());
+    assertEquals("SWEET", m.getOrderComments());
+    assertEquals(20.00000, m.getOrderTotalamount(), 0);
+    assertEquals(odt, m.getOrderDate());
+    assertEquals(4, m.getOrderQuantity());
+    assertEquals(WalletType.PAYTM, m.getWalletType());
+  }
+  /**
+   * Tests the order class.
+   * @param dao for mocking data acces obj.
+   */
+  @Test
+  public final void testListAllEmpty(@Mocked final OrderDAO dao) {
+    new Expectations() {
+      {
+        dao.show(); result = new ArrayList<Orders>();
+      }
+    };
+    new MockUp<OrderFactory>() {
+      @Mock
+      OrderDAO dao() {
+        return dao;
+      }
+    };
+    Orders[] m = OrderFactory.showOrder();
+    assertEquals(0, m.length);
+  }
+  /**
+   * Tests that a list with some employees is handled correctly.
+   * @param dao mocking the dao class.
+   * @throws ParseException for date format validation.
+   * param custId to cust id.
+   */
+
+  @Test
+  public final void testListAllSome(@Mocked final OrderDAO dao) throws ParseException {
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    String dt = new String("2020-03-18");
+    Date odt = sdf.parse(dt);
+    SimpleDateFormat sdff = new SimpleDateFormat("yyyy-MM-dd");
+    String dtt = new String("2020-04-18");
+    Date odtt = sdff.parse(dtt);
+    final Orders o2 = new Orders(1, 100, 2, 1, OrderStatus.ACCEPTED, "SWEET", 200.00000, odt, 4, WalletType.PAYTM);
+    final Orders o3 = new Orders(2, 101, 3, 2, OrderStatus.REJECTED, "SPICY", 300.00000, odtt, 3, WalletType.GOOGLE_PAY);
+    final ArrayList<Orders> on = new ArrayList<Orders>();
+    on.add(o2);
+    on.add(o3);
+    new Expectations() {
+      {
+        dao.show(); result = on;
+      }
+    };
+    new MockUp<OrderFactory>() {
+      @Mock
+      OrderDAO dao() {
+        return dao;
+      }
+    };
+    Orders[] on1 = OrderFactory.showOrder();
+    assertEquals(2, on1.length);
+    assertEquals(1, on1[0].getOrderId());
+    assertEquals(100, on1[0].getCustomerId());
+    assertEquals(101, on1[1].getCustomerId());
+    assertEquals(1, on1[0].getMenuId());
+    assertEquals(2, on1[1].getMenuId());
+    assertEquals(2, on1[0].getVendorId());
+    assertEquals(3, on1[1].getVendorId());
+    assertEquals(4, on1[0].getOrderQuantity());
+    assertEquals(3, on1[1].getOrderQuantity());
+    assertEquals("SWEET", on1[0].getOrderComments());
+    assertEquals("SPICY", on1[1].getOrderComments());
+    assertEquals(200.00000, on1[0].getOrderTotalamount(), 0);
+    assertEquals(300.00000, on1[1].getOrderTotalamount(), 0);
   }
 }
-

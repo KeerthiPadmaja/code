@@ -1,7 +1,7 @@
 package com.hexaware.MLP176.model;
 
-import com.hexaware.MLP176.persistence.CustomerDAO;
-import com.hexaware.MLP176.factory.CustomerFactory;
+//import com.hexaware.MLP176.persistence.CustomerDAO;
+//import com.hexaware.MLP176.factory.CustomerFactory;
 import static org.junit.Assert.assertEquals;
 //import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertFalse;
@@ -10,17 +10,20 @@ import static org.junit.Assert.assertTrue;
 //import static org.junit.Assert.assertNull;
 
 import java.text.ParseException;
-import org.junit.Test;
-import org.junit.Before;
-//import org.junit.runner.RunWith;
-
-import mockit.Expectations;
-import mockit.MockUp;
-import mockit.Mocked;
-import mockit.Mock;
 //import mockit.integration.junit4.JMockit;
 import java.util.ArrayList;
 
+import com.hexaware.MLP176.factory.CustomerFactory;
+import com.hexaware.MLP176.persistence.CustomerDAO;
+
+import org.junit.Before;
+//import org.junit.runner.RunWith;
+import org.junit.Test;
+
+import mockit.Expectations;
+import mockit.Mock;
+import mockit.MockUp;
+import mockit.Mocked;
 /**
  * Test class for Customer.
  */
@@ -46,8 +49,8 @@ public class CustomerTest {
     assertFalse(c2.equals(c1));
     assertTrue(c2.equals(c3));
     assertEquals(c2.hashCode(), c3.hashCode());
-    Customer customer = new Customer();
-    assertFalse(c2.equals(customer));
+    Vendor vendor = new Vendor();
+    assertFalse(c2.equals(vendor));
     assertFalse(c.equals(c2));
   }
    /**
@@ -83,71 +86,6 @@ public class CustomerTest {
     customer.setCustomerUsername("harig");
     assertEquals("harig", customer.getCustomerUsername());
   }
-  /**public final void testCustomer() {
-    Customer m = new Customer();
-    Customer m100 = new Customer(100);
-    Customer m101 = new Customer(101);
-    assertNotEquals(m100, null);
-    assertNotEquals(m101, null);
-    assertEquals(m100.getFoodId(),
-        new Customer(100).getFoodId());
-    m101.setFoodId(100);
-    assertNotEquals(m101, new Customer(101));
-    assertEquals(m100.hashCode(),
-        new Customer(100).hashCode());
-    assertEquals(m100, new Customer(100));
-  } */
-  /**
-   * tests that empty employee list is handled correctly.
-   * @param dao mocking the dao class
-   */
-   /**
-  @Test
-  public final void testListAllEmpty(@Mocked final CustomerDAO dao) {
-    new Expectations() {
-      {
-        dao.show(); result = new ArrayList<Customer>();
-      }
-    };
-    new MockUp<CustomerFactory>() {
-      @Mock
-      CustomerDAO dao() {
-        return dao;
-      }
-    };
-    Customer[] me = CustomerFactory.showCustomer();
-    assertEquals(0, me.length);
-  } */
-  /**
-   * Tests that a list with some employees is handled correctly.
-   * @param dao mocking the dao class
-   */
-  /**
-  @Test
-  public final void testListAllSome(@Mocked final CustomerDAO dao) {
-    final Customer m100 = new Customer(100);
-    final Customer m101 = new Customer(101);
-    final ArrayList<Customer> mn = new ArrayList<Customer>();
-    new Expectations() {
-      {
-        mn.add(m100);
-        mn.add(m101);
-        dao.show(); result = mn;
-      }
-    };
-    new MockUp<CustomerFactory>() {
-      @Mock
-      CustomerDAO dao() {
-        return dao;
-      }
-    };
-    Customer[] mn1 = CustomerFactory.showCustomer();
-    assertEquals(2, mn1.length);
-    assertEquals(new Customer(100).getFoodId(),
-        mn1[0].getFoodId());
-    assertEquals(new Customer(101).getFoodId(),
-        mn1[1].getFoodId());
-  }*/
   /**
    * tests that empty employee list is handled correctly.
    * @param dao mocking the dao class
@@ -179,10 +117,10 @@ public class CustomerTest {
     final Customer c2 = new Customer(1, "XYZ", "XYZ@GMAIL.COM",  "9999977654", "Chennai", "512", "xyz");
     final Customer c3 = new Customer(12, "WEZ", "WEZ@GMAIL.COM",  "9900077654", "Coimbatore", "502", "wez");
     final ArrayList<Customer> cus = new ArrayList<Customer>();
+    cus.add(c2);
+    cus.add(c3);
     new Expectations() {
       {
-        cus.add(c2);
-        cus.add(c3);
         dao.show(); result = cus;
       }
     };
@@ -210,4 +148,3 @@ public class CustomerTest {
     assertEquals("wez", cus1[1].getCustomerUsername());
   }
 }
-

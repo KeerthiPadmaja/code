@@ -1,0 +1,14 @@
+<p>calc works!</p>
+First Number :
+<input type = "number" name="firstNo"
+[(ngModel)]="firstNo" /> <br/><br/>
+Second Number :
+<input type = "number" name="secondNo"
+[(ngModel)]="secondNo" /> <br/><br/>
+
+Result :
+<input type = "number" name="result" 
+   [(ngModel)]="result" /> <br/><br/>
+<input type="button" value="Sum" (click)="sum()" />
+<input type="button" value="Sub" (click)="sub()" /> 
+<input type="button" value="Mul" (click)="mul()" /> 

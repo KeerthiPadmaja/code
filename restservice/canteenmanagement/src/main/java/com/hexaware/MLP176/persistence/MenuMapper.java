@@ -2,7 +2,6 @@ package com.hexaware.MLP176.persistence;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import com.hexaware.MLP176.model.MenuCat;
 import com.hexaware.MLP176.model.Menu;
 

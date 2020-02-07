@@ -1,3 +1,4 @@
+
 package com.hexaware.MLP176.model;
 import java.util.Objects;
 
@@ -35,6 +36,26 @@ public class Menu {
  * menuReviews to store food reviews.
  */
   private String menuReviews;
+  /**
+ * foodName to store foodName.
+ */
+  private String foodName;
+  /**
+  * foodDetail to store foodDetail.
+   */
+  private String foodDetail;
+   /**
+  * foodPrice to store foodPrice.
+   */
+  private Double foodPrice;
+   /**
+  * foodStatus to store foodStatus.
+   */
+  private FoodStatus foodStatus;
+     /**
+  * foodRating to store foodRating.
+   */
+  private String foodRating;
   /**
    * Default Constructor.
    */
@@ -85,12 +106,16 @@ public class Menu {
   }
   @Override
     public final int hashCode() {
+<<<<<<< HEAD
     return Objects.hash(menuId, menuCat, menuItem, menuQuantity, menuCost, menuCalories, menuReviews);
+=======
+    return Objects.hash(menuId);
   }
   @Override
     public final String toString() {
     return String.format("%-15s %-15s %-15s %-15s %-15s %-15s %-15s", menuId, menuCat, menuItem,
      menuQuantity,  menuCost, menuCalories, menuReviews);
+>>>>>>> 86794babf968a27b49364007655274b2f311840c
   }
     /**
      * @return this food ID.
@@ -175,5 +200,72 @@ public class Menu {
    */
   public final void setMenuReviews(final String argMenuReviews) {
     this.menuReviews = argMenuReviews;
+  }
+<<<<<<< HEAD
+       /**
+     * @return this food item Name.
+     */
+  public final String getFoodName() {
+    return foodName;
+  }
+       /**
+       * @param argFoodName gets the food item Name.
+       */
+  public final void setFoodName(final String argFoodName) {
+    this.foodName = argFoodName;
+  }
+     /**
+     * @return this food item Detail.
+     */
+  public final String getFoodDetail() {
+    return foodDetail;
+  }
+       /**
+       * @param argFoodDetail gets the food item Detail.
+       */
+  public final void setFoodDetail(final String argFoodDetail) {
+    this.foodDetail = argFoodDetail;
+  }
+    /**
+     * @return this food item Price.
+     */
+  public final Double getFoodPrice() {
+    return foodPrice;
+  }
+       /**
+       * @param argFoodPrice gets the food item Price.
+       */
+  public final void setFoodPrice(final Double argFoodPrice) {
+    this.foodPrice = argFoodPrice;
+  }
+    /**
+     * @return this food item Status.
+     */
+  public final FoodStatus getFoodStatus() {
+    return foodStatus;
+  }
+       /**
+       * @param argFoodStatus gets the food item Status.
+       */
+  public final void setFoodStatus(final FoodStatus argFoodStatus) {
+    this.foodStatus = argFoodStatus;
+  }
+      /**
+     * @return this food item Rating.
+     */
+  public final String getFoodRating() {
+    return foodRating;
+  }
+       /**
+       * @param argFoodRating gets the food item Rating.
+       */
+  public final void setFoodRating(final String argFoodRating) {
+    this.foodRating = argFoodRating;
+=======
+  @Override
+  public final String toString() {
+    return String.format("%15s %15s %15s %35s %15s %15s %15s", menuId, menuCat, menuItem,
+     menuQuantity,  menuCost, menuCalories, menuReviews);
+>>>>>>> 6db6efb5881e4b3697d51e864a6a25443cbe4123
   }
 }

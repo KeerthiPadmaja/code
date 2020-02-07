@@ -1,4 +1,6 @@
-package com.hexaware.MLP176.model;
+package com.hexaware.MLP176;
+
+//package com.hexaware.MLP176.model;
 
 import com.hexaware.MLP176.persistence.MenuDAO;
 import com.hexaware.MLP176.factory.MenuFactory;
@@ -10,6 +12,13 @@ import static org.junit.Assert.assertTrue;
 //import static org.junit.Assert.assertNull;
 
 import java.text.ParseException;
+
+import com.hexaware.MLP176.model.Menu;
+import com.hexaware.MLP176.model.MenuCat;
+import com.hexaware.MLP176.model.Vendor;
+
+//import com.hexaware.MLP176.model.MenuCat;
+
 import org.junit.Test;
 import org.junit.Before;
 //import org.junit.runner.RunWith;
@@ -82,92 +91,6 @@ public class MenuTest {
     menu.setMenuReviews("***");
     assertEquals("***", menu.getMenuReviews());
   }
-  /**public final void testMenu() {
-    Menu m = new Menu();
-    Menu m100 = new Menu(100);
-    Menu m101 = new Menu(101);
-    assertNotEquals(m100, null);
-    assertNotEquals(m101, null);
-    assertEquals(m100.getFoodId(),
-        new Menu(100).getFoodId());
-    m101.setFoodId(100);
-    assertNotEquals(m101, new Menu(101));
-    assertEquals(m100.hashCode(),
-        new Menu(100).hashCode());
-    assertEquals(m100, new Menu(100));
-  } */
-  /**
-   * tests that empty employee list is handled correctly.
-   * @param dao mocking the dao class
-   */
-   /**
-  @Test
-  public final void testListAllEmpty(@Mocked final MenuDAO dao) {
-    new Expectations() {
-      {
-        dao.show(); result = new ArrayList<Menu>();
-      }
-    };
-    new MockUp<MenuFactory>() {
-      @Mock
-      MenuDAO dao() {
-        return dao;
-      }
-    };
-    Menu[] me = MenuFactory.showMenu();
-    assertEquals(0, me.length);
-  } */
-  /**
-   * Tests that a list with some employees is handled correctly.
-   * @param dao mocking the dao class
-   */
-  /**
-  @Test
-  public final void testListAllSome(@Mocked final MenuDAO dao) {
-    final Menu m100 = new Menu(100);
-    final Menu m101 = new Menu(101);
-    final ArrayList<Menu> mn = new ArrayList<Menu>();
-    new Expectations() {
-      {
-        mn.add(m100);
-        mn.add(m101);
-        dao.show(); result = mn;
-      }
-    };
-    new MockUp<MenuFactory>() {
-      @Mock
-      MenuDAO dao() {
-        return dao;
-      }
-    };
-    Menu[] mn1 = MenuFactory.showMenu();
-    assertEquals(2, mn1.length);
-    assertEquals(new Menu(100).getFoodId(),
-        mn1[0].getFoodId());
-    assertEquals(new Menu(101).getFoodId(),
-        mn1[1].getFoodId());
-  }*/
-/**
-   * tests that empty employee list is handled correctly.
-   * @param dao mocking the dao class
-   */
-
-  @Test
-   public final void testListAllEmpty(@Mocked final MenuDAO dao) {
-    new Expectations() {
-      {
-        dao.show(); result = new ArrayList<Menu>();
-      }
-    };
-    new MockUp<MenuFactory>() {
-      @Mock
-      MenuDAO dao() {
-        return dao;
-      }
-    };
-    Menu[] m = MenuFactory.showMenu();
-    assertEquals(0, m.length);
-  }
   /**
    * Tests that a list with some employees is handled correctly.
    * @param dao mocking the dao class
@@ -178,10 +101,10 @@ public class MenuTest {
     final Menu m2 = new Menu(101, MenuCat.VEG, "PODI DOSA", 1, 80, 105, "**");
     final Menu m3 = new Menu(102, MenuCat.NONVEG, "Biriyani", 1, 150, 110, "****");
     final ArrayList<Menu> mn = new ArrayList<Menu>();
+    mn.add(m2);
+    mn.add(m3);
     new Expectations() {
       {
-        mn.add(m2);
-        mn.add(m3);
         dao.show(); result = mn;
       }
     };

@@ -3,7 +3,6 @@ package com.hexaware.MLP176.model;
 //import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
 //import com.hexaware.MLP176.model.Menu;
 
 // import com.hexaware.MLP176.persistence.MenuDAO;
@@ -15,6 +14,7 @@ import static org.junit.Assert.assertNotNull;
 
 
 import org.junit.Test;
+
 import org.junit.Before;
 // import org.junit.runner.RunWith;
 
@@ -28,15 +28,16 @@ import org.junit.Before;
 /**
  * Test class for Menu.
  */
-//@RunWith(JMockit.class)
+// @RunWith(JMockit.class)
 public class WalletTest {
-    /**
+  /**
    * setup method.
    */
   @Before
   public void initInput() {
 
   }
+
   /**
    * Tests for equals.
    */
@@ -52,6 +53,17 @@ public class WalletTest {
     Wallet wallet = new Wallet();
     assertFalse(m2.equals(wallet));
     assertFalse(m2.equals(wa));
+  }
+
+/**
+   * Tests the toString() methods of the Vendor class.
+   */
+  @Test
+  public final void testToString() {
+    Wallet m = new Wallet(1000, WalletType.CREDIT_CARD, 500.00, 1200);
+    String result = String.format("%-15s %-15s %-15s %-15s", m.getWalletId(), m.getWalletType(),
+        m.getWalletAmount(), m.getCustomerId());
+    assertEquals(result, m.toString());
   }
   /**
    * Tests the equals/hashcode methods of the employee class.

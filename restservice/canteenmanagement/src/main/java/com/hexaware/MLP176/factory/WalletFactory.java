@@ -20,7 +20,7 @@ public class WalletFactory {
    * Call the data base connection.
    * @return the connection object.
    */
-  private static WalletDAO dao() {
+  public static WalletDAO dao() {
     DbConnection db = new DbConnection();
     return db.getConnect().onDemand(WalletDAO.class);
   }
@@ -31,6 +31,14 @@ public class WalletFactory {
    */
   public static Wallet[] showWallet(final int custId) {
     List<Wallet> wallet = dao().showByWalletId(custId);
+    return wallet.toArray(new Wallet[wallet.size()]);
+  }
+    /**
+   * Call the data base connection.
+   * @return the array of menu object.
+   */
+  public static Wallet[] showWallet() {
+    List<Wallet> wallet = dao().show();
     return wallet.toArray(new Wallet[wallet.size()]);
   }
 }

@@ -1,6 +1,5 @@
 package com.hexaware.MLP176.model;
 import java.util.Objects;
-
 /**
  * Menu class used to display menu information.
  * @author hexware
@@ -74,8 +73,13 @@ public class Vendor {
     return Objects.hash(vendorId);
   }
   @Override
+<<<<<<< HEAD
+    public final String toString() {
+    return String.format("%15s %15s %15s %15s %15s %15s", vendorId, vendorName, vendorUsername,
+=======
   public final String toString() {
     return String.format("%-15s %-15s %-15s %-15s %-15s %-15s", vendorId, vendorName, vendorUsername,
+>>>>>>> 86794babf968a27b49364007655274b2f311840c
      vendorNumber,  vendorEmail, vendorPassword);
   }
     /**

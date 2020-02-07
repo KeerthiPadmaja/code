@@ -106,7 +106,7 @@ class CliMain {
     if (status.toUpperCase().equals("YES")) {
       System.out.println(OrderFactory.cancelOrder(ordId, custId, status));
     } else {
-      System.out.println("Your order has not been Cancelled :)");
+      System.out.println("Your order has not been cancelled");
     }
   }
   private void acceptReject() {
@@ -186,10 +186,18 @@ class CliMain {
         Customer customer = CustomerFactory.findByCustomerName(username);
         int custId = customer.getCustomerId();
         Orders[] cusHistory = OrderFactory.showCustomerHistory(custId);
+<<<<<<< HEAD
+        System.out.println("-----------------------------------------------------------------"
+            + "---------------------------------------------------------------------------------");
+        System.out.printf("%10s %10s %30s %10s %10s %10s %10s %10s", "orderId", "customerId",
+            "vendorid", "menuid", "Order status", "ordercomments", "Bill Amount",
+            "Order quantity");
+=======
         System.out.println("---------------------------------------------------------------------------"
             + "------------------------------------");
         System.out.printf("%-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s %-10s", "OrderId", "CustomerId",
             "Vendorid", "Menuid", "Ord status", "OrderCmnts", "Bill Amount", "Order  Date", "Order qty", "Wallet type");
+>>>>>>> 86794babf968a27b49364007655274b2f311840c
         System.out.println();
         System.out.println("----------------------------------------------------------------------------"
             + "------------------------------------");
@@ -236,7 +244,7 @@ class CliMain {
     }
   }
   private void pendingOrders() {
-    System.out.println("\n1. Customer Pending Orders\n2. Vendor Pending Orders");
+    System.out.println("Pending Orders:\n1. Customer Pending Orders\n2. Vendor Pending Orders");
     int choice = option.nextInt();
     int count = 0;
     if (choice == 1) {
@@ -308,7 +316,8 @@ class CliMain {
   }
 
   /**
- * showFullMenu method  display the menu item stored in database.
+ * showFullMenu
+ * method  display the menu item stored in database.
  */
   private void showFullWallet() {
     System.out.println("Enter customer Name");

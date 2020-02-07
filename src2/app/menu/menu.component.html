@@ -1,0 +1,15 @@
+<!-- <app-first></app-first>
+<hr/>
+<app-second></app-second>
+<hr/>
+<app-calc></app-calc> -->
+
+<a [routerLink] = "['/menu', {outlets: {'data' :['first']}}]">First</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a [routerLink] = "['/menu', {outlets: {'data' :['second']}}]">second</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a [routerLink] = "['/menu', {outlets: {'data' :['calc']}}]">Calc</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a [routerLink] = "['/menu', {outlets: {'data' :['employ']}}]">Employ</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a [routerLink] = "['/menu', {outlets: {'data' :['employList']}}]">EmployList</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a [routerLink] = "['/menu', {outlets: {'data' :['agent']}}]">Agent</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a [routerLink] = "['/menu', {outlets: {'data' :['agentList']}}]">AgentList</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<hr/><br/><br/>
+<router-outlet name='data'></router-outlet>
